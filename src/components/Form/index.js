@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchTextByFilter } from "../../redux/text/textSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 function Form() {
   const dispatch = useDispatch();
+  const content = useSelector((state) => state.text.content);
   const [number, setNumber] = useState(4);
   const [format, setFormat] = useState("text");
 
@@ -13,7 +15,23 @@ function Form() {
 
   return (
     <div className="form-wrapper">
-      <h2>Filters</h2>
+      <div className="form-header">
+        <h2>Filters</h2>
+        <div
+          className="copy"
+          onClick={() => {
+            navigator.clipboard.writeText(content);
+            toast("Copied to clipboard!", {
+              style: {
+                background: "#333",
+                color: "#fff",
+              },
+            });
+          }}
+        >
+          Copy to clipboard
+        </div>
+      </div>
 
       <div className="form">
         <div className="form-item">
@@ -38,6 +56,7 @@ function Form() {
           </select>
         </div>
       </div>
+      <Toaster position="bottom-center" />
     </div>
   );
 }

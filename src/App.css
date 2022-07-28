@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   color: white;
+  user-select: none;
 }
 
 .container {
@@ -29,6 +30,12 @@
 .form-wrapper {
   width: 100%;
   text-align: left;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .form {
@@ -58,8 +65,30 @@
   margin-right: 2rem;
 }
 
-.form-item select {
-  padding-right: 3rem;
+.form-item input,
+select {
+  padding: 6px 12px;
   background-color: #fff;
-  border-radius: 3px;
+  color: #474e5c;
+  border: none;
+  width: 100%;
+}
+
+.form-item input:focus-visible {
+  outline: none;
+}
+
+.form-item label {
+  margin-bottom: 1rem;
+}
+
+.copy {
+  padding: 6px 12px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.copy:hover {
+  background-color: #fff;
+  color: #474e5c;
 }
